@@ -5,6 +5,7 @@ import About from './components/About';
 import NoteState from './context/notes/NoteState'
 import { Route } from "react-router-dom";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import Alert from './components/Alert';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
+          <Alert message="This is test"/>
           <div className="container">
             <Switch>
               <Route exact path="/">
