@@ -9,7 +9,7 @@ function AddNote() {
         e.preventDefault()
         addNote(note.title,note.description,note.tag)
     }
-
+//  For dynamically updating the text what user has written 
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
     }
