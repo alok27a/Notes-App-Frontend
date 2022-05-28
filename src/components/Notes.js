@@ -1,12 +1,20 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import noteContext from '../context/notes/noteContext'
 import NoteItem from './NoteItem';
 
 const Notes = () => {
     const context = useContext(noteContext);
+    const history = useHistory();
     const { notes, getNotes, editNote } = context
     useEffect(() => {
-        getNotes();
+        if (localStorage.getItem('token')) {
+            getNotes();
+        }
+        else {
+            history.push('/login')
+
+        }
     }, [])
 
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
@@ -54,11 +62,11 @@ const Notes = () => {
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="desc" className="form-label">Description</label>
-                                        <input type="text" className="form-control" id="edescription" name="description" onChange={onChange} minLength={5} required/>
+                                        <input type="text" className="form-control" id="edescription" name="description" onChange={onChange} minLength={5} required />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="tag" className="tag">Tag</label>
-                                        <input type="text" className="form-control" id="etag" name="etag" onChange={onChange} minLength={5} required/>
+                                        <input type="text" className="form-control" id="etag" name="etag" onChange={onChange} minLength={5} required />
                                     </div>
                                 </form>
                             </div>
